@@ -32,6 +32,11 @@
 9.执行git push 把本地文件推送到服务器上。
 
     $ git push
+    
+10.如碰到No refs in common and none specified; doing nothins;Perhaps you should specify a branch such as 'master';Everything up-to-date
+
+    $ git push origin master
+     
 2.1更新文件方法
 
 1.可以先在服务器线上将文件删除，然后执行git pull同步本地文件就可以了。（比如删除线上文件1.txt）
