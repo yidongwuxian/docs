@@ -15,12 +15,14 @@
 6. 不要忽略可选的关闭标签（例如，</li> 和</body>）。
 7. HTML页面不要写行内样式，应写到css文件里，用link rel引入。
     
-	######不规范的:#####
+	######不规范的:
+
 		<div style="width:100%;float:left;background-color: #fff">
     	…
     	</div>
 
-	#####规范的:#####
+	#####规范的:
+
 		<div class="moudleBox1"></div>
 		index_main.css
 		.moudleBox1{ 
@@ -31,9 +33,13 @@
 8.	当表示“<”或“>”是要用
 		`&lt;或& gt;`来表示。
 9. html标签不要用大写，要用小写表示。
-	##### 如表示段落用 #####
+
+	##### 如表示段落用
+
 		<p></p>
-   ######不提倡用  
+
+   	######不提倡用  
+
 		<P></P>
 10. 模块间要加注释标明模块的具体含义。
 	
@@ -56,19 +62,20 @@
   
  
 	######不建议用
- 
-`如：.Crumbs_Left, .Crumbs_Right`
 
-    命名可以采用模块的前两个字母+具体功能名称结合使用：
+		如：.Crumbs_Left, .Crumbs_Right
+    ##### 建议用
 
-	如表示平台安全模块里面的内容（platform_ safe_content）
-
-    用pl_cn 来表示。
-
-	尽量采用短命名且有意义的命名，单词首字母小写。
-
-	避免过度使用简写。.btn 可以很好地描述 button，但是 .s 不能代表任何元素。
-
+	    命名可以采用模块的前两个字母+具体功能名称结合使用：
+    
+    	如表示平台安全模块里面的内容（platform_ safe_content）
+    
+    	用pl_cn 来表示。
+    
+    	尽量采用短命名且有意义的命名，单词首字母小写。
+    
+    	避免过度使用简写。.btn 可以很好地描述 button，但是 .s 不能代表任何元素。
+    
 2.不要用同名样式名。
 
 3.声明顺序
@@ -280,94 +287,94 @@
 
 8.在语句的行长度超过 120 时，根据逻辑条件合理缩进。
 
-			示例：
+		示例：
+	
+		// 较复杂的逻辑条件组合，将每个条件独立一行，逻辑运算符放置在行首进行分隔，或将部分逻辑按逻辑组合进行分隔。
+		// 建议最终将右括号 ) 与左大括号 { 放在独立一行，保证与 if 内语句块能容易视觉辨识。
+		if (user.isAuthenticated()
+		    && user.isInRole('admin')
+		    && user.hasAuthority('add-admin')
+		    || user.hasAuthority('delete-admin')
+		) {
+		    // Code
+		}
+	
+		// 按一定长度截断字符串，并使用 + 运算符进行连接。
+		// 分隔字符串尽量按语义进行，如不要在一个完整的名词中间断开。
+		// 特别的，对于HTML片段的拼接，通过缩进，保持和HTML相同的结构。
+		var html = '' // 此处用一个空字符串，以便整个HTML片段都在新行严格对齐
+		    + '<article>'
+		    +     '<h1>Title here</h1>'
+		    +     '<p>This is a paragraph</p>'
+		    +     '<footer>Complete</footer>'
+		    + '</article>';
 		
-			// 较复杂的逻辑条件组合，将每个条件独立一行，逻辑运算符放置在行首进行分隔，或将部分逻辑按逻辑组合进行分隔。
-			// 建议最终将右括号 ) 与左大括号 { 放在独立一行，保证与 if 内语句块能容易视觉辨识。
-			if (user.isAuthenticated()
-			    && user.isInRole('admin')
-			    && user.hasAuthority('add-admin')
-			    || user.hasAuthority('delete-admin')
-			) {
-			    // Code
-			}
-
-			// 按一定长度截断字符串，并使用 + 运算符进行连接。
-			// 分隔字符串尽量按语义进行，如不要在一个完整的名词中间断开。
-			// 特别的，对于HTML片段的拼接，通过缩进，保持和HTML相同的结构。
-			var html = '' // 此处用一个空字符串，以便整个HTML片段都在新行严格对齐
-			    + '<article>'
-			    +     '<h1>Title here</h1>'
-			    +     '<p>This is a paragraph</p>'
-			    +     '<footer>Complete</footer>'
-			    + '</article>';
-			
-			// 也可使用数组来进行拼接，相对 + 更容易调整缩进。
-			var html = [
-			    '<article>',
-			        '<h1>Title here</h1>',
-			        '<p>This is a paragraph</p>',
-			        '<footer>Complete</footer>',
-			    '</article>'
-			];
-			html = html.join('');
-			
-			// 当参数过多时，将每个参数独立写在一行上，并将结束的右括号 ) 独立一行。
-			// 所有参数必须增加一个缩进。
-			foo(
-			    aVeryVeryLongArgument,
-			    anotherVeryLongArgument,
-			    callback
-			);
-
-			// 也可以按逻辑对参数进行组合。
-			// 最经典的是baidu.format函数，调用时将参数分为“模板”和“数据”两块
-			baidu.format(
-			    dateFormatTemplate,
-			    year, month, date, hour, minute, second
-			);
-			
-			// 当函数调用时，如果有一个或以上参数跨越多行，应当每一个参数独立一行。
-			// 这通常出现在匿名函数或者对象初始化等作为参数时，如setTimeout函数等。
-			setTimeout(
-			    function () {
-			        alert('hello');
-			    },
-			    200
-			);
-			
-			order.data.read(
-			    'id=' + me.model.id, 
-			    function (data) {
-			        me.attchToModel(data.result);
-			        callback();
-			    }, 
-			    300
-			);
-
-			// 链式调用较长时采用缩进进行调整。
-			$('#items')
-			    .find('.selected')
-			    .highlight()
-			    .end();
-			
-			// 三元运算符由3部分组成，因此其换行应当根据每个部分的长度不同，形成不同的情况。
-			var result = thisIsAVeryVeryLongCondition
-			    ? resultA : resultB;
-			
-			var result = condition
-			    ? thisIsAVeryVeryLongResult
-			    : resultB;
-			
-			// 数组和对象初始化的混用，严格按照每个对象的 { 和结束 } 在独立一行的风格书写。
-			var array = [
-			    {
-			        // ...
-			    },
-			    {
-			        // ...
-			    }
-			];
+		// 也可使用数组来进行拼接，相对 + 更容易调整缩进。
+		var html = [
+		    '<article>',
+		        '<h1>Title here</h1>',
+		        '<p>This is a paragraph</p>',
+		        '<footer>Complete</footer>',
+		    '</article>'
+		];
+		html = html.join('');
+		
+		// 当参数过多时，将每个参数独立写在一行上，并将结束的右括号 ) 独立一行。
+		// 所有参数必须增加一个缩进。
+		foo(
+		    aVeryVeryLongArgument,
+		    anotherVeryLongArgument,
+		    callback
+		);
+	
+		// 也可以按逻辑对参数进行组合。
+		// 最经典的是baidu.format函数，调用时将参数分为“模板”和“数据”两块
+		baidu.format(
+		    dateFormatTemplate,
+		    year, month, date, hour, minute, second
+		);
+		
+		// 当函数调用时，如果有一个或以上参数跨越多行，应当每一个参数独立一行。
+		// 这通常出现在匿名函数或者对象初始化等作为参数时，如setTimeout函数等。
+		setTimeout(
+		    function () {
+		        alert('hello');
+		    },
+		    200
+		);
+		
+		order.data.read(
+		    'id=' + me.model.id, 
+		    function (data) {
+		        me.attchToModel(data.result);
+		        callback();
+		    }, 
+		    300
+		);
+	
+		// 链式调用较长时采用缩进进行调整。
+		$('#items')
+		    .find('.selected')
+		    .highlight()
+		    .end();
+		
+		// 三元运算符由3部分组成，因此其换行应当根据每个部分的长度不同，形成不同的情况。
+		var result = thisIsAVeryVeryLongCondition
+		    ? resultA : resultB;
+		
+		var result = condition
+		    ? thisIsAVeryVeryLongResult
+		    : resultB;
+		
+		// 数组和对象初始化的混用，严格按照每个对象的 { 和结束 } 在独立一行的风格书写。
+		var array = [
+		    {
+		        // ...
+		    },
+		    {
+		        // ...
+		    }
+		];
 
 9.不得省略语句结束的分号。
 
