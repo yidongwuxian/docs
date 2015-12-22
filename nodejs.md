@@ -54,7 +54,7 @@
 	npm install。
 ###3.app.js里面引用
 	var partials = require('express-partials');
-###在
+
 	app.set('view engine', 'ejs');
 ###下面添加
 	app.use(partials());
